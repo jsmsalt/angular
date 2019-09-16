@@ -1,0 +1,27 @@
+<form [formGroup]="mainForm" (ngSubmit)="onSubmit()">
+    <div class="field">
+        <div class="label">
+            <label class="label">Descripción</label>
+        </div>
+
+        <div class="control">
+            <input class="input is-rounded" type="text" formControlName="descripcion" [ngClass]="{ 'is-danger': f.descripcion.invalid && f.descripcion.dirty }">
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="label">
+            <label class="label">Cotización</label>
+        </div>
+
+        <div class="control">
+            <input class="input is-rounded" type="number" formControlName="cotizacion" [ngClass]="{ 'is-danger': f.cotizacion.invalid && f.cotizacion.dirty }">
+        </div>
+    </div>
+
+    <div class="field is-grouped is-grouped-right">
+        <div class="control">
+            <button class="button is-success is-rounded is-large" type="submit">Enviar</button>
+        </div>
+    </div>
+</form>

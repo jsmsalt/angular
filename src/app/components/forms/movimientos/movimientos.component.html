@@ -1,0 +1,158 @@
+<form [formGroup]="mainForm" (ngSubmit)="onSubmit($event)">
+    <div class="field">
+        <div class="label">
+            <label class="label">Tipo de pago</label>
+        </div>
+
+        <div class="control">
+            <label class="radio">
+                <input type="radio" value="1" name="tipoMovimiento" formControlName="tipoMovimiento" [checked]="tipo == 1" (click)="tipo=1">
+                Ingreso
+            </label>
+            <label class="radio">
+                <input type="radio" value="2" name="tipoMovimiento" formControlName="tipoMovimiento" [checked]="tipo == 2" (click)="tipo=2">
+                Egreso
+            </label>
+        </div>
+    </div>
+
+    <div class="field is-grouped">
+        <div class="control">
+            <div class="field">
+                <div class="label">
+                    <label class="label">Fecha</label>
+                </div>
+        
+                <div class="control">
+                    <input class="input is-rounded" type="date" formControlName="fecha" [ngClass]="{ 'is-danger': f.fecha.invalid && f.fecha.touched }">
+                </div>
+            </div>
+        </div>
+
+        <div class="control" [ngClass]="{ 'is-hidden': tipo != 2 }">
+            <div class="field">
+                <div class="label">
+                    <label class="label">Fecha de vencimiento</label>
+                </div>
+        
+                <div class="control">
+                    <input class="input is-rounded" type="date" formControlName="fechaVencimiento" [ngClass]="{ 'is-danger': f.fechaVencimiento.invalid && f.fechaVencimiento.touched }">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="field is-grouped">
+        <div class="control">
+            <div class="field">
+                <div class="label">
+                    <label class="label">Monto</label>
+                </div>
+        
+                <div class="control">
+                    <input class="input is-rounded" type="number" formControlName="monto" [ngClass]="{ 'is-danger': f.monto.invalid && f.monto.touched }">
+                </div>
+            </div>
+        </div>
+        <div class="control">
+            <div class="field">
+                <label class="label">Moneda</label>
+                <div class="control">
+                    <div class="select is-rounded" [ngClass]="{ 'is-danger': f.moneda.invalid && f.moneda.touched }">
+                        <select formControlName="moneda">
+                            <option value="-1" selected>Selecciona</option>
+                            <option [value]="moneda.id" *ngFor="let moneda of monedas">{{moneda.descripcion}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="control">
+            <div class="field">
+                <label class="label">Tipo de Pago</label>
+                <div class="control">
+                    <div class="select is-rounded" [ngClass]="{ 'is-danger': f.tipoPago.invalid && f.tipoPago.touched }">
+                        <select formControlName="tipoPago">
+                            <option value="-1" selected>Selecciona</option>
+                            <option [value]="tipopago.id" *ngFor="let tipopago of tipopagos">{{tipopago.descripcion}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="label">
+            <label class="label">Descripción</label>
+        </div>
+
+        <div class="control">
+            <input class="input is-rounded" type="text" formControlName="descripcion" [ngClass]="{ 'is-danger': f.descripcion.invalid && f.descripcion.touched }">
+        </div>
+    </div>
+
+    <div class="field is-grouped">
+        <div class="control">
+            <div class="field">
+                <label class="label">Categoría</label>
+                <div class="control">
+                    <div class="select is-rounded" [ngClass]="{ 'is-danger': f.subtipoMovimiento.invalid && f.subtipoMovimiento.touched }">
+                        <select formControlName="subtipoMovimiento">
+                            <option value="-1" selected>Selecciona</option>
+                            <option [value]="subtipo.id" *ngFor="let subtipo of subtipos">{{subtipo.descripcion}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="control" [ngClass]="{ 'is-hidden': persona != 2 }">
+            <div class="field">
+                <label class="label">Proveedor</label>
+                <div class="control">
+                    <div class="select is-rounded" [ngClass]="{ 'is-danger': f.proveedor.invalid && f.proveedor.touched }">
+                        <select formControlName="proveedor" (change)="onChange()">
+                            <option value="-1" selected>Selecciona</option>
+                            <option [value]="proveedor.id" *ngFor="let proveedor of proveedores">{{proveedor.nombre}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="control" [ngClass]="{ 'is-hidden': persona != 1 }">
+            <div class="field">
+                <label class="label">Cliente</label>
+                <div class="control">
+                    <div class="select is-rounded" [ngClass]="{ 'is-danger': f.cliente.invalid && f.cliente.touched }">
+                        <select formControlName="cliente" (change)="onChange()">
+                            <option value="-1" selected>Selecciona</option>
+                            <option [value]="cliente.id" *ngFor="let cliente of clientes">{{cliente.nombre}} {{cliente.apellido}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="control">
+            <label class="label">Selecciona</label>
+            <div>
+                <label class="radio">
+                    <input type="radio" value="1" name="persona" [checked]="persona == 1" (click)="persona=1">
+                    Cliente
+                </label>
+            </div>
+            <div>
+                <label class="radio">
+                    <input type="radio" value="2" name="persona" [checked]="persona == 2" (click)="persona=2">
+                    Proveedor
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="field is-grouped is-grouped-right">
+        <div class="control">
+            <button class="button is-success is-rounded is-medium" type="submit">Enviar</button>
+        </div>
+    </div>
+</form>

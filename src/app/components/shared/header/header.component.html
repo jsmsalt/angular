@@ -1,0 +1,28 @@
+<header>
+    <div class="container">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item logo" [routerLink]="['/']" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }">
+                <h1>REST API</h1>
+              </a>
+          
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="mainMenu" [ngClass]="{'is-active': menuVisible}" (click)="toggleMenu()">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+          
+            <div id="mainMenu" class="navbar-menu" [ngClass]="{'is-active': menuVisible}">
+              <div class="navbar-start">
+                <a class="navbar-item" [routerLink]="['/movimientos']" routerLinkActive="is-active" >Movimientos</a>
+                <a class="navbar-item" [routerLink]="['/monedas']" routerLinkActive="is-active" >Monedas</a>
+                <a class="navbar-item" [routerLink]="['/pagos']" routerLinkActive="is-active" >Tipo Pago</a>
+                <a class="navbar-item" [routerLink]="['/subtipos']" routerLinkActive="is-active" >Subtipo</a>
+                <a class="navbar-item" [routerLink]="['/clientes']" routerLinkActive="is-active" >Clientes</a>
+                <a class="navbar-item" [routerLink]="['/proveedores']" routerLinkActive="is-active" >Proveedores</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+</header>

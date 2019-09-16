@@ -1,0 +1,13 @@
+<h1 class="title is-1">Monedas</h1>
+
+<div class="columns is-centered">
+    <div class="column is-6">
+        <app-table [data]="monedas"></app-table>
+    </div>
+</div>
+
+<div class="columns is-centered">
+    <div class="column is-6">
+        <form-monedas (enviado)="nuevaMoneda($event)"></form-monedas>
+    </div>
+</div>

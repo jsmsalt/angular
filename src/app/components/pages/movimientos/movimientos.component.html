@@ -1,0 +1,21 @@
+<h1 class="title is-1">Movimientos</h1>
+
+<div class="columns is-centered is-multiline" *ngIf="type != 2">
+    <div class="column is-9">
+        <app-table [data]="movimientos" [fields]="fields"></app-table>
+    </div>
+
+    <div class="column is-9">
+        <div class="field is-grouped is-grouped-right">
+            <div class="control">
+                <a class="button is-success is-rounded is-medium" [routerLink]="['/movimientos', 'new']">Agregar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="columns is-centered" *ngIf="type == 2">
+    <div class="column is-7">
+        <form-movimientos (enviado)="nuevoMovimiento($event)"></form-movimientos>
+    </div>
+</div>
